@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete EV</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <h1>Delete EV</h1>
+    
+    <form action="/delete-ev" method="POST">
+        <label for="ev_names">Select EV to delete:</label>
+        <select id="ev_names" name="ev_name">
+            {% for ev in evs_data %}
+                <option value="{{ ev.name }}">{{ ev.name }}</option>
+            {% endfor %}
+        </select>        
+        <br><br>
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

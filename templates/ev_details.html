@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ev.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <h1>{{ ev.name }} - Details</h1>
+    <p>Manufacturer: {{ ev.manufacturer }}</p>
+    <p>Year: {{ ev.year }}</p>
+    <p>Battery Size: {{ ev.battery_size }} kWh</p>
+    <p>WLTP Range: {{ ev.wltp_range }} km</p>
+    <p>Cost: ${{ ev.cost }}</p>
+    <p>Power: {{ ev.power }} kW</p>
+    <p>Average Rating: {{ ev.average_rating }} stars</p>
+    <br><br>
+    <h3>Comments</h3>
+    
+    {% for comment in comments %}
+    <div>
+        <p>{{ comment.comment }}</p>
+        <p>Rating: {{ comment.rating }} stars</p>
+        <p>Date: {{ comment.date_posted }}</p>
+    </div>
+    {% endfor %}
+    
+    {% if user_info %}
+    <form action="/ev/{{ ev.id }}/add-comment" method="post">
+        <textarea maxlength="1000" name="comment" required></textarea>
+        <input type="number" name="rating" min="0" max="10" required>
+        <button type="submit">Post Comment</button>
+    </form>
+    <form action="/modify-ev" method="get">
+        <input type="hidden" name="ev_id" value="{{ ev.id }}">
+        <button type="submit">Edit EV</button>
+    </form>
+    <form action="/remove-ev" method="get">
+        <button type="submit">Delete EV</button>
+    </form>
+    {% endif %}
+    <br><br>
+    <form action="/" method="get">
+        <button type="submit">Go Back Home</button>
+    </form>
+</body>
+</html>

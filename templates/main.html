@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EV Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <script type="module" src="{{ url_for('static', path='/firebase-login.js') }}"></script>
+</head>
+<body>
+    <h1>Electric Vehicles</h1>
+    <div id="login-box" {% if user_info %} hidden {% endif %}>
+        <input type="email" id="email" placeholder="Email Address"><br/>
+        <input type="password" id="password" placeholder="Password"><br/>
+        <button id="login">Login</button>
+        <button id="sign-up">Sign Up</button>
+    </div>
+    <button id="sign-out" {% if not user_info %} hidden {% endif %}>Sign out</button>
+    <br/><br/>
+    
+    <h3>Available EVs</h3>
+    {% if evs %}
+    <form action="/compare" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>Compare - Select only Two</th>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Year</th>
+                <th>Battery Size (kWh)</th>
+                <th>WLTP Range (km)</th>
+                <th>Cost</th>
+                <th>Power (kW)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ev in evs %}
+            <tr>
+                <td><input type="checkbox" name="ev-checkbox" value="{{ ev.id }}" class="ev-checkbox"></td>
+                <td><a href="{{ ev.website }}">{{ ev.name }}</a></td>
+                <td>{{ ev.manufacturer }}</td>
+                <td>{{ ev.year }}</td>
+                <td>{{ ev.battery_size }}</td>
+                <td>{{ ev.wltp_range }}</td>
+                <td>{{ ev.cost }}</td>
+                <td>{{ ev.power }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        <br/>
+        <button type="submit" id="compare-btn" disabled>Compare these two</button>
+        <br/>
+        <br/>
+        </form>
+    </table>
+
+    {% else %}
+        <p>No EVs available.</p>
+    {% endif %}
+    
+    {% if user_info %}
+    <h3>Add a New Electric Vehicle</h3>
+    <form action="/add-ev" method="get">
+        <button type="submit">Add EV</button>
+    </form>
+    {% endif %}
+    <br/>
+
+    <h3>Search EVs</h3>
+    <form action="/" method="get">
+        <select name="attribute_name">
+            <option value="" disabled selected>Select attribute</option>
+            <option value="name">Name</option>
+            <option value="manufacturer">Manufacturer</option>
+            <option value="year">Year</option>
+            <option value="battery_size">Battery Size (in kWh)</option>
+            <option value="wltp_range">WLTP Range (in km)</option>
+            <option value="cost">Cost (in Euros)</option>
+            <option value="power">Power (in kW)</option>
+        </select>
+        <input type="text" name="string_value_case_1_name" placeholder="Value" id="string_value_case_1" style="display:none;">
+        <input type="number" name="min_value_case_2_name" placeholder="Min Value" id="min_value_case_2" style="display:none;">
+        <input type="number" name="max_value_case_2_name" placeholder="Max Value" id="max_value_case_2" style="display:none;">        
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

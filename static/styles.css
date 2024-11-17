@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+    background-color: #f7f8fa;
+    color: #333;
+    padding: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+body, h1, h2, h3, p, form, table {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.highest-rating {
+    background-color: #4CAF50;
+}
+
+.lowest-rating {
+    background-color: #F44336;
+}
+
+.green-highlight {
+    background-color: lightgreen;
+}
+
+.red-highlight {
+    background-color: lightcoral;
+}
+
+
+.default-rating {
+    background-color: #ffffff;
+}
+
+
+body {
+    background-color: #f8f8f7;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+button {
+    background-color: #007aff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005ecb;
+}
+
+button:disabled {
+    background-color: #a2a2a2;
+    cursor: default;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
+    padding: 12px;
+    border: 1px solid #007aff;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: border 0.3s ease-in-out;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #007aff;
+    outline: none;
+}
+
+a {
+    color: #007aff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

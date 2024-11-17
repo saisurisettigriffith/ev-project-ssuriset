@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit EV</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <h1>Edit EV</h1>
+    
+    <form action="/edit-ev" method="POST">
+        <input type="hidden" name="ev_id" value="{{ ev.id }}">
+
+        <input type="text" name="ev_name" value="{{ ev.name }}" required>
+        <input type="text" name="manufacturer" value="{{ ev.manufacturer }}" required>
+        <input type="number" name="year" value="{{ ev.year }}" required>
+        <input type="number" step="0.1" name="battery_size" value="{{ ev.battery_size }}" required>
+        <input type="number" name="wltp_range" value="{{ ev.wltp_range }}" required>
+        <input type="number" step="0.01" name="cost" value="{{ ev.cost }}" required>
+        <input type="number" name="power" value="{{ ev.power }}" required>
+        <br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

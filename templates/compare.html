@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compare EVs</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <h1>Comparison of Selected EVs</h1>
+    {% if evs %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                {% for ev in evs %}
+                <td>{{ ev.name }}</td>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Manufacturer</td>
+                {% for ev in evs %}
+                    <td>{{ ev.manufacturer }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Year</td>
+                {% for ev in evs %}
+                    {% set highlight_style = 'background-color: green;' if loop.index == 1 and comparisons[0] else 'background-color: red;' if loop.index == 2 and comparisons[0] else 'background-color: red;' if loop.index == 1 and not comparisons[0] else 'background-color: green;' %}
+                    <td style="{{ highlight_style }}">{{ ev.year }}</td>
+                {% endfor %}
+            </tr>            
+            <tr>
+                <td>Battery Size (kWh)</td>
+                {% for ev in evs %}
+                    {% set highlight_style = 'background-color: green;' if loop.index == 1 and comparisons[1] else 'background-color: red;' if loop.index == 2 and comparisons[1] else 'background-color: red;' if loop.index == 1 and not comparisons[1] else 'background-color: green;' %}
+                <td style="{{ highlight_style }}">{{ ev.battery_size }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>WLTP Range (km)</td>
+                {% for ev in evs %}
+                    {% set highlight_style = 'background-color: green;' if loop.index == 1 and comparisons[2] else 'background-color: red;' if loop.index == 2 and comparisons[2] else 'background-color: red;' if loop.index == 1 and not comparisons[2] else 'background-color: green;' %}
+                    <td style="{{ highlight_style }}">{{ ev.wltp_range }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Cost</td>
+                {% for ev in evs %}
+                    {% set highlight_style = 'background-color: green;' if loop.index == 1 and comparisons[3] else 'background-color: red;' if loop.index == 2 and comparisons[3] else 'background-color: red;' if loop.index == 1 and not comparisons[3] else 'background-color: green;' %}
+                    <td style="{{ highlight_style }}">{{ ev.cost }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Power (kW)</td>
+                {% for ev in evs %}
+                    {% set highlight_style = 'background-color: green;' if loop.index == 1 and comparisons[4] else 'background-color: red;' if loop.index == 2 and comparisons[4] else 'background-color: red;' if loop.index == 1 and not comparisons[4] else 'background-color: green;' %}
+                    <td style="{{ highlight_style }}">{{ ev.power }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Average Rating</td>
+                {% for ev in evs %}
+                    {% set highlight_style = 'background-color: green;' if loop.index == 1 and comparisons[5] else 'background-color: red;' if loop.index == 2 and comparisons[5] else 'background-color: red;' if loop.index == 1 and not comparisons[5] else 'background-color: green;' %}
+                    <td style="{{ highlight_style }}">{{ ev.average_rating }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p>No EVs selected for comparison.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
